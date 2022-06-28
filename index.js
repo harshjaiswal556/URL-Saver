@@ -22,6 +22,9 @@ app.get("/form", (req, res) => {
     res.render("form");
 });
 
+app.get("/login", (req, res) => {
+    res.render("login");
+})
 app.post("/form",async(req, res)=>{
     try{
         const ps = req.body.password;
@@ -46,7 +49,28 @@ app.post("/form",async(req, res)=>{
     }catch(err){
         res.send(err);
     }
-})
+});
+
+app.post("/login",async(req, res) => {
+    try{
+        const email = req.body.email;
+        const password = req.body.password;
+        const user = await Register.findOne({email});
+        if(!user){
+            res.send("This email does not exist");
+        }
+        else if(password === user.password){
+            const allData = await ShortUrl.find()
+            res.render("index",{shortUrls:allData});
+        }
+        else{
+            res.send("Please enter a valid password");
+        }
+    }catch(err){
+        res.status(400).send(err);
+    }
+});
+
 app.post("/short",async(req,res) => {
     const url = req.body.fullUrl;
     const name = req.body.urlName;
