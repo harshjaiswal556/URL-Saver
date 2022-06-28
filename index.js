@@ -6,14 +6,47 @@ const port = process.env.PORT || 3000;
 mongoose.connect("mongodb://localhost:27017/urlshrinker").then(() =>{console.log("Connection successfull")}).catch((err)=>{console.log(err)});
 
 const ShortUrl = require("./models/url");
+const Register = require("./models/signup");
 
 app.set('view engine','ejs');
 app.use(express.json());
-app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({extended:false}));
+
+
 app.get("/", async(req, res) => {
     const allData = await ShortUrl.find()
     res.render("index",{shortUrls:allData});
 });
+
+app.get("/form", (req, res) => {
+    res.render("form");
+});
+
+app.post("/form",async(req, res)=>{
+    try{
+        const ps = req.body.password;
+        const cps = req.body.conPassword;
+        if(ps === cps && ps.length > 5){
+            const register = new Register({
+                fname : req.body.fname,
+                lname : req.body.lname,
+                age : req.body.age,
+                gender : req.body.gender,
+                email : req.body.email,
+                password : req.body.password,
+                conPassword : req.body.conPassword
+            });
+            await register.save();
+            const allData = await ShortUrl.find()
+            res.render("index",{shortUrls:allData});
+        }
+        else{
+            res.status(400).send("Enter password min length 6 and same password twice.");
+        }
+    }catch(err){
+        res.send(err);
+    }
+})
 app.post("/short",async(req,res) => {
     const url = req.body.fullUrl;
     const name = req.body.urlName;
