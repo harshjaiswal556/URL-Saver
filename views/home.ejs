@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL-Saver</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<style>
+    h1 {
+        font-size: 230%;
+        background: -webkit-linear-gradient(rgb(255, 155, 172), blue);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    body, html{
+        height: 100vh;
+        background-image: linear-gradient(to bottom right, rgb(255, 134, 152), rgb(23, 23, 255));
+    }
+
+    main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 20vw;
+        height: 80vh;
+        width: 80vw;
+    }
+    .container{
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 6px 6px 12px black;
+        font-weight: 600;
+    }
+    .container:hover{
+        background-image: linear-gradient(to bottom right, rgb(23, 23, 255), rgb(255, 134, 152));
+        font-size: 110%;
+    }
+    a{
+        text-decoration: none;
+        color: white;
+    }
+    button:hover{
+        background-color: white;
+        box-shadow: 3px 3px 2px #0d6efd;
+    }
+    button{
+        background-color: #0d6efd;
+        border: 1px solid white;
+        border-radius: 2px;
+        box-shadow: 3px 3px 2px black;
+        margin-right: 10px;
+    }
+    .btnbox{
+        display: flex;
+        justify-content: center;
+    }
+</style>
+
+<body>
+    <nav class="navbar">
+        <a class="navbar-brand" href="#">
+            <h1>
+                <img src="https://img.icons8.com/external-icongeek26-outline-gradient-icongeek26/64/000000/external-url-essentials-icongeek26-outline-gradient-icongeek26.png"
+                     height="55vh">
+                URL-Saver
+            </h1>
+        </a>
+    </nav>
+    <main>
+        <div class="container">
+            <p><strong>URL-Saver</strong> is a website which saves your important url with 100% security and user can access it from any device from anywhere. It is very simple to use. Start saving URL by clicking the button given below.</p>
+            <div class="btnbox">
+                <button class="button"><a href="form">Create Account</a></button>
+                <button class="button"><a href="login">Login</a></button>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -15,9 +15,7 @@ app.use(express.urlencoded({extended:false}));
 
 
 app.get("/", async(req, res) => {
-    // const allData = await ShortUrl.find()
-    // res.render("index",{email:"/short", shortUrls:allData});
-    res.send("Login/register")
+    res.render("home")
 });
 
 app.get("/form", (req, res) => {
@@ -44,8 +42,7 @@ app.post("/form",async(req, res)=>{
                 conPassword : conPasswordHash
             });
             await register.save();
-            const allData = await ShortUrl.find()
-            res.render("index",{shortUrls:allData, email:req.body.email});
+            res.redirect("login")
         }
         else{
             res.status(400).send("Enter password min length 6 and same password twice.");
@@ -83,11 +80,12 @@ app.post("/login",async(req, res) => {
 
             app.get("/:shortid",async(req, res) => {
                 const shortid = req.params.shortid;
-                const data = await ShortUrl.findOne({emailID:email});
+                const data = await ShortUrl.findOne({short:shortid});
+                // const user_data = await ShortUrl.find({email:emailId})
                 if(!data){
                     return res.status(404).send("Error 404");
                 }
-                data.clicks++;
+                // data.clicks++;
                 await data.save();
             
                 res.redirect(data.full);
